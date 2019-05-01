@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane fx:id="game" onKeyPressed="#esc" prefHeight="500.0" prefWidth="898.0" styleClass="game" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.GameController">
+    <children>
+      <StackPane fx:id="stackPane" layoutX="308.0" layoutY="177.0" prefHeight="175.0" prefWidth="307.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <JFXButton fx:id="continueButton" layoutX="120.0" layoutY="119.0" onAction="#continueClick" prefHeight="43.0" prefWidth="95.0" style="-fx-background-color: white;" text="Continue" />
+                  <JFXButton fx:id="exitButton" layoutX="231.0" layoutY="119.0" onAction="#exitClick" prefHeight="43.0" prefWidth="62.0" style="-fx-background-color: white;" text="Exit" />
+                  <JFXButton fx:id="saveButton" layoutX="14.0" layoutY="119.0" onAction="#saveGame" prefHeight="43.0" prefWidth="95.0" style="-fx-background-color: white;" text="Save game" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+        <TabPane cache="true" layoutX="45.0" layoutY="141.0" prefHeight="211.0" prefWidth="334.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Needs">
+                    <content>
+                        <AnchorPane prefHeight="175.0" prefWidth="334.0" styleClass="needs" stylesheets="@../style.css">
+                            <children>
+                                <Label layoutX="11.0" layoutY="14.0" prefHeight="32.0" prefWidth="98.0" text="Hunger" />
+                                <Label layoutX="11.0" layoutY="46.0" prefHeight="25.0" prefWidth="60.0" text="Energy" />
+                                <Label layoutX="11.0" layoutY="78.0" prefHeight="32.0" prefWidth="81.0" text="Bladder" />
+                                <Label layoutX="10.0" layoutY="110.0" prefHeight="32.0" prefWidth="83.0" text="Hygiene" />
+                                <JFXProgressBar fx:id="hunger" layoutX="85.0" layoutY="25.0" prefHeight="12.0" progress="1.0" stylesheets="@../style.css" />
+                                <JFXProgressBar fx:id="energy" layoutX="85.0" layoutY="57.0" prefHeight="12.0" progress="1.0" />
+                                <JFXProgressBar fx:id="bladder" layoutX="85.0" layoutY="89.0" prefHeight="12.0" progress="1.0" />
+                                <JFXProgressBar fx:id="hygiene" layoutX="85.0" layoutY="121.0" prefHeight="12.0" progress="1.0" />
+                                <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="294.0" layoutY="50.0" onMouseClicked="#sleepClick">
+                                    <image>
+                                        <Image url="@../Images/bed.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="295.0" layoutY="82.0" onMouseClicked="#peeClick">
+                                    <image>
+                                        <Image url="@../Images/toilet.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="293.0" layoutY="115.0" onMouseClicked="#bathClick">
+                                    <image>
+                                        <Image url="@../Images/bath.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="293.0" layoutY="20.0" onMouseClicked="#eatClick">
+                                    <image>
+                                        <Image url="@../Images/food.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Skills">
+                    <content>
+                        <TableView fx:id="skillsTableView" prefHeight="200.0" prefWidth="200.0">
+                            <columns>
+                                <TableColumn fx:id="nameColumn" prefWidth="244.0" text="Skill" />
+                                <TableColumn fx:id="levelColumn" minWidth="0.0" prefWidth="91.0" text="Level" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab text="Work">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="work" stylesheets="@../style.css">
+                            <children>
+                                <Label layoutX="57.0" layoutY="14.0" prefHeight="58.0" prefWidth="221.0" text="Ops, it seems you haven`t job yet." />
+                                <JFXButton fx:id="findJobbtn" layoutX="140.0" layoutY="101.0" style="-fx-background-color: #11ffee00;" text="Go!" />
+                                <Label layoutX="75.0" layoutY="43.0" prefHeight="58.0" prefWidth="186.0" text="Do You want to find a job?" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+      <TextField fx:id="time" layoutX="6.0" layoutY="7.0" prefHeight="23.0" prefWidth="260.0" style="-fx-background-color: #11ffee00;" />
+    </children>
+</AnchorPane>
