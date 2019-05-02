@@ -1,8 +1,5 @@
 package sample.Person.Skills;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Skills {
 
     private Skill painting;
@@ -55,22 +52,5 @@ public class Skills {
         playingTheGuitar = new Skill("Playing the guitar", 0);
         programming = new Skill("Programming", 0);
         writing = new Skill("Writing", 0);
-    }
-
-    public void printSkills(){
-        HashMap<String, Integer> skills = new HashMap<>();
-        skills.put(getPainting().getName(), getPainting().getLevel());
-        skills.put(getDancing().getName(), getDancing().getLevel());
-        skills.put(getWriting().getName(), getWriting().getLevel());
-        skills.put(getGardening().getName(), getGardening().getLevel());
-        skills.put(getPhotography().getName(), getPhotography().getLevel());
-        skills.put(getLogic().getName(), getLogic().getLevel());
-        skills.put(getPlayingTheGuitar().getName(), getPlayingTheGuitar().getLevel());
-        skills.put(getProgramming().getName(), getProgramming().getLevel());
-
-        for(Map.Entry entry : skills.entrySet()){
-            System.out.println(entry.getKey() + ": "
-                    + entry.getValue());
-        }
     }
 }

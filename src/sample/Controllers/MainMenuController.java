@@ -121,16 +121,16 @@ public class MainMenuController implements Initializable {
     }
 
     private void continueButtonClick(JFXListView listView, JFXDialog dialog) {
-        String name = listView.getSelectionModel().getSelectedItem().toString();
+        if (listView.getSelectionModel() != null) {
+            String name = listView.getSelectionModel().getSelectedItem().toString();
 
-        Hero hero = Game.getInstance().heroByName(name);
-        if (hero == null)
-            return;
+            Hero hero = Game.getInstance().heroByName(name);
+            if (hero == null) return;
 
-        SceneCreator.<GameController>newWithFadeOut(mainMenu,
-                "/sample/filesFXML/Game.fxml",
-                controller -> controller.setHero(hero));
+            SceneCreator.<GameController>newWithFadeOut(mainMenu, "/sample/filesFXML/Game.fxml",
+                    controller -> controller.setHero(hero));
 
-        dialog.close();
+            dialog.close();
+        }
     }
 }

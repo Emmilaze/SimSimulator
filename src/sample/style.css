@@ -1,14 +1,14 @@
 .mainMenu{
-    -fx-background-image: url('Images/backgroundMainMenu.png');
+    -fx-background-image: url('Resources/Images/backgroundMainMenu.png');
     -fx-background-size: cover;
 }
 .newGame{
-    -fx-background-image: url('Images/backgroundNewGame.jpg');
+    -fx-background-image: url('Resources/Images/backgroundNewGame.jpg');
     -fx-background-size: cover;
     -fx-font-family: 'Citrica Cyrillic';
 }
 .game{
-    -fx-background-image: url('Images/backgroundGame.jpg');
+    -fx-background-image: url('Resources/Images/backgroundGame.jpg');
     -fx-background-size: cover;
     -fx-font-family: 'Citrica Cyrillic';
     -fx-font-size: 18px;
@@ -108,7 +108,7 @@
     -fx-text-fill: black;
 }
 .job{
-    -fx-background-image: url('Images/backgroundJob.jpg');
+    -fx-background-image: url('Resources/Images/backgroundJob.jpg');
     -fx-background-size: cover;
     -fx-font-family: 'Citrica Cyrillic';
 }
@@ -121,4 +121,13 @@
 }
 .button{
     -fx-text-fill: black;
+}
+.invisibleButton{
+ -fx-background-color: #11ffee00;
+    -fx-min-width: 1px;
+}
+.shop{
+    -fx-background-image: url('Resources/Images/backgroundShop.png');
+    -fx-font-family: 'Citrica Cyrillic';
+    -fx-font-size: 24px;
 }

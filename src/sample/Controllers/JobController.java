@@ -16,9 +16,6 @@ import java.util.ResourceBundle;
 
 public class JobController implements Initializable {
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-
     @FXML private Label paintlvl;
     @FXML private Label dancelvl;
     @FXML private Label writelvl;
@@ -89,46 +86,52 @@ public class JobController implements Initializable {
     }
 
     public void paint(ActionEvent actionEvent) {
-        hero.newWork("Cartoons artist", 60, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Cartoons artist", 60, "Tu Th Fr Sa");
         back();
     }
 
     public void prog(ActionEvent actionEvent) {
-        hero.newWork("Junior developer", 90, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Junior developer", 90, "Mo Tu Wed Th Fr");
         back();
     }
 
     public void logic(ActionEvent actionEvent) {
-        hero.newWork("Bacterium Scientist", 80, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Bacterium Scientist", 80, "Mo Tu We Th Fr");
         back();
     }
 
     public void photo(ActionEvent actionEvent) {
-        hero.newWork("Children's photographer", 70, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Children's photographer", 70, "Tu We Fr Sa Su");
         back();
     }
 
     public void garden(ActionEvent actionEvent) {
-        hero.newWork("Beetle sprayer", 60, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Beetle sprayer", 60, "Mo Tu We Th Fr");
         back();
     }
 
     public void play(ActionEvent actionEvent) {
-        hero.newWork("Stooge", 80, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Stooge", 80, "Tu We Fr Sa Su");
         back();
     }
 
     public void dance(ActionEvent actionEvent) {
-        hero.newWork("Twerker", 80, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Twerker", 80, "Tu We Fr Sa Su");
         back();
     }
 
     public void write(ActionEvent actionEvent) {
-        hero.newWork("Fan Fiction writer", 40, "Mon  " + ANSI_RED + "Tue  " + ANSI_RESET + "Wed  " + ANSI_RED + "Thu  Fr  Sa  " + ANSI_RESET + "Su");
+        hero.newWork("Fan Fiction writer", 40, "Mo Tu We Th Fr");
         back();
     }
 
     public void back() {
-        SceneCreator.<GameController>newWithFadeOut(job, "/sample/filesFXML/Game.fxml", controller -> controller.setHero(hero));
+        SceneCreator.<GameController>newWithFadeOut(job, "/sample/filesFXML/Game.fxml",
+                controller -> controller.setHero(hero));
+    }
+
+    public void cancel(ActionEvent actionEvent) {
+        SceneCreator.<GameController>newWithFadeOut(job, "/sample/filesFXML/Game.fxml",
+                controller -> controller.setHero(hero));
     }
 }

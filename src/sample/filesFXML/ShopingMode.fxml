@@ -1,14 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.Controllers.ShopingModeController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="shop" prefHeight="500.0" prefWidth="898.0" styleClass="shop" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ShoppingModeController">
+   <children>
+      <TabPane layoutX="42.0" layoutY="57.0" prefHeight="359.0" prefWidth="308.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Shop">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutY="-3.0" prefHeight="329.0" prefWidth="309.0" style="-fx-background-color: white;" styleClass="work">
+                           <children>
+                              <JFXTreeTableView fx:id="shopTableView" layoutX="1.0" prefHeight="260.0" prefWidth="308.0">
+                                 <columns>
+                                    <TreeTableColumn prefWidth="223.6666259765625" text="Item" />
+                                    <TreeTableColumn prefWidth="84.3333740234375" text="Price" />
+                                 </columns>
+                              </JFXTreeTableView>
+                              <JFXButton layoutX="198.0" layoutY="272.0" onAction="#buyClick" prefHeight="43.0" prefWidth="97.0" style="-fx-background-color: white;" text="Buy" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <TabPane layoutX="549.0" layoutY="105.0" prefHeight="272.0" prefWidth="285.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="My items">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="234.0" prefWidth="303.0">
+                     <children>
+                        <AnchorPane layoutY="-4.0" prefHeight="249.0" prefWidth="300.0" styleClass="work">
+                           <children>
+                              <ImageView fx:id="img1" fitHeight="45.0" fitWidth="45.0" layoutX="6.0" layoutY="7.0" />
+                              <ImageView fx:id="img27" fitHeight="45.0" fitWidth="45.0" layoutX="97.0" layoutY="187.0" />
+                              <ImageView fx:id="img26" fitHeight="45.0" fitWidth="45.0" layoutX="52.0" layoutY="187.0" />
+                              <ImageView fx:id="img25" fitHeight="45.0" fitWidth="45.0" layoutX="6.0" layoutY="187.0" />
+                              <ImageView fx:id="img23" fitHeight="45.0" fitWidth="45.0" layoutX="187.0" layoutY="142.0" />
+                              <ImageView fx:id="img12" fitHeight="45.0" fitWidth="45.0" layoutX="232.0" layoutY="54.0" />
+                              <ImageView fx:id="img8" fitHeight="45.0" fitWidth="45.0" layoutX="52.0" layoutY="52.0" />
+                              <ImageView fx:id="img6" fitHeight="45.0" fitWidth="45.0" layoutX="232.0" layoutY="7.0" />
+                              <ImageView fx:id="img22" fitHeight="45.0" fitWidth="45.0" layoutX="142.0" layoutY="142.0" />
+                              <ImageView fx:id="img24" fitHeight="45.0" fitWidth="45.0" layoutX="232.0" layoutY="142.0" />
+                              <ImageView fx:id="img21" fitHeight="45.0" fitWidth="45.0" layoutX="97.0" layoutY="142.0" />
+                              <ImageView fx:id="img19" fitHeight="45.0" fitWidth="45.0" layoutX="6.0" layoutY="142.0" />
+                              <ImageView fx:id="img18" fitHeight="45.0" fitWidth="45.0" layoutX="232.0" layoutY="97.0" />
+                              <ImageView fx:id="img20" fitHeight="45.0" fitWidth="45.0" layoutX="52.0" layoutY="142.0" />
+                              <ImageView fx:id="img16" fitHeight="45.0" fitWidth="45.0" layoutX="142.0" layoutY="97.0" />
+                              <ImageView fx:id="img13" fitHeight="45.0" fitWidth="45.0" layoutX="6.0" layoutY="97.0" />
+                              <ImageView fx:id="img14" fitHeight="45.0" fitWidth="45.0" layoutX="52.0" layoutY="97.0" />
+                              <ImageView fx:id="img15" fitHeight="45.0" fitWidth="45.0" layoutX="97.0" layoutY="97.0" />
+                              <ImageView fx:id="img17" fitHeight="45.0" fitWidth="45.0" layoutX="187.0" layoutY="97.0" />
+                              <ImageView fx:id="img10" fitHeight="45.0" fitWidth="45.0" layoutX="142.0" layoutY="52.0" />
+                              <ImageView fx:id="img11" fitHeight="45.0" fitWidth="45.0" layoutX="187.0" layoutY="52.0" />
+                              <ImageView fx:id="img9" fitHeight="45.0" fitWidth="45.0" layoutX="97.0" layoutY="52.0" />
+                              <ImageView fx:id="img5" fitHeight="45.0" fitWidth="45.0" layoutX="187.0" layoutY="7.0" />
+                              <ImageView fx:id="img7" fitHeight="45.0" fitWidth="45.0" layoutX="6.0" layoutY="52.0" />
+                              <ImageView fx:id="img4" fitHeight="45.0" fitWidth="45.0" layoutX="142.0" layoutY="7.0" />
+                              <ImageView fx:id="img3" fitHeight="45.0" fitWidth="45.0" layoutX="97.0" layoutY="7.0" />
+                              <ImageView fx:id="img2" fitHeight="45.0" fitWidth="45.0" layoutX="52.0" layoutY="7.0" />
+                              <ImageView fx:id="img28" fitHeight="45.0" fitWidth="45.0" layoutX="142.0" layoutY="187.0" />
+                              <ImageView fx:id="img29" fitHeight="45.0" fitWidth="45.0" layoutX="187.0" layoutY="187.0" />
+                              <ImageView fx:id="img30" fitHeight="45.0" fitWidth="45.0" layoutX="232.0" layoutY="187.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Label fx:id="moneyLabel" layoutX="617.0" layoutY="58.0" />
+      <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="549.0" layoutY="49.0">
+         <image>
+            <Image url="@../Resources/Images/money.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="14.0" layoutY="421.0">
+         <image>
+            <Image url="@../Resources/Images/backwhite.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="14.0" layoutY="421.0" mnemonicParsing="false" onAction="#cancel" prefHeight="65.0" prefWidth="65.0" styleClass="invisibleButton" />
+   </children>
 </AnchorPane>

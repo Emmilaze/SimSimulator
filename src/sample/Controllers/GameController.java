@@ -5,24 +5,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import sample.Core.Common.SceneCreator;
 import sample.Person.Hero;
 import sample.Person.IHeroNeeds;
 import sample.Person.Skills.Skill;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -47,7 +44,7 @@ public class GameController implements Initializable {
     @FXML private JFXProgressBar bladderBar;
     @FXML private JFXProgressBar hygieneBar;
     @FXML private AnchorPane noWork;
-    @FXML private AnchorPane havework;
+    @FXML private AnchorPane haveWork;
     @FXML private Label positionLabel;
     @FXML private Label salaryLabel;
     @FXML private Label workingDaysLabel;
@@ -65,6 +62,7 @@ public class GameController implements Initializable {
         exitButton.setVisible(false);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         levelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
+        skillsTableView.setPlaceholder(new Label("You haven`t any skills"));
     }
 
     public void setHero(Hero person) {
@@ -76,17 +74,21 @@ public class GameController implements Initializable {
 
         time.setText(String.valueOf(hero.getCalendar().getTime()));
 
-        if (!hero.hasJob()) {
-            havework.setVisible(false);
-            havework.toBack();
+        if (hero.getWork() == null) {
+            noWork.toFront();
+            noWork.setVisible(true);
+            haveWork.setVisible(false);
+            haveWork.toBack();
         } else {
             noWork.toBack();
             noWork.setVisible(false);
+            haveWork.toFront();
+            haveWork.setVisible(true);
 
             positionLabel.setText(hero.getWork().getPosition());
-            salaryLabel.setText(String.valueOf(hero.getWork().getSalary()));
+            salaryLabel.setText(hero.getWork().getSalary() + "$");
             workingDaysLabel.setText(hero.getWork().getWorkingDays());
-
+            workingDaysLabel.setTextFill(Color.RED);
             setWorkImage();
         }
     }
@@ -94,28 +96,28 @@ public class GameController implements Initializable {
     public void setWorkImage() {
         switch (hero.getWork().getPosition()) {
             case ("Cartoons artist"):
-                workImage.setImage(new Image("/Images/Palette.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/Palette.png"));
                 break;
             case ("Junior developer"):
-                workImage.setImage(new Image("/Images/ComputerKey.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/ComputerKey.png"));
                 break;
             case ("Bacterium Scientist"):
-                workImage.setImage(new Image("/Images/ChessPawn2.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/ChessPawn2.png"));
                 break;
             case ("Children's photographer"):
-                workImage.setImage(new Image("/Images/Camera.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/Camera.png"));
                 break;
             case ("Beetle sprayer"):
-                workImage.setImage(new Image("/Images/SproutSoil.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/SproutSoil.png"));
                 break;
             case ("Stooge"):
-                workImage.setImage(new Image("/Images/GuitarAcoustic.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/GuitarAcoustic.png"));
                 break;
             case ("Twerker"):
-                workImage.setImage(new Image("/Images/DiscoBall.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/DiscoBall.png"));
                 break;
             case ("Fan Fiction writer"):
-                workImage.setImage(new Image("/Images/WritingPaper.png"));
+                workImage.setImage(new Image("/sample/Resources/Images/WritingPaper.png"));
                 break;
         }
     }
@@ -141,28 +143,28 @@ public class GameController implements Initializable {
         }
     }
 
-    public void eatClick(MouseEvent mouseEvent) {
+    public void eatClick(ActionEvent actionEvent) {
         needs.eating(hero.getCalendar());
         time.setText(String.valueOf(hero.getCalendar().getTime()));
 
         refreshBars();
     }
 
-    public void sleepClick(MouseEvent mouseEvent) {
+    public void sleepClick(ActionEvent actionEvent) {
         needs.sleeping(hero.getCalendar());
         time.setText(String.valueOf(hero.getCalendar().getTime()));
 
         refreshBars();
     }
 
-    public void peeClick(MouseEvent mouseEvent) {
+    public void peeClick(ActionEvent actionEvent) {
         needs.goToPee(hero.getCalendar());
         time.setText(String.valueOf(hero.getCalendar().getTime()));
 
         refreshBars();
     }
 
-    public void bathClick(MouseEvent mouseEvent) {
+    public void bathClick(ActionEvent actionEvent) {
         needs.takingShower(hero.getCalendar());
         time.setText(String.valueOf(hero.getCalendar().getTime()));
 
@@ -224,23 +226,28 @@ public class GameController implements Initializable {
 
     public void refreshList() {
         listOfSkills.clear();
-
-        listOfSkills.add(new Skill("Painting", hero.getSkill().getPainting().getLevel()));
-        listOfSkills.add(new Skill("Dancing", hero.getSkill().getDancing().getLevel()));
-        listOfSkills.add(new Skill("Writing", hero.getSkill().getWriting().getLevel()));
-        listOfSkills.add(new Skill("Programming", hero.getSkill().getProgramming().getLevel()));
-        listOfSkills.add(new Skill("Gardening", hero.getSkill().getGardening().getLevel()));
-        listOfSkills.add(new Skill("Logic", hero.getSkill().getLogic().getLevel()));
-        listOfSkills.add(new Skill("Photography", hero.getSkill().getPhotography().getLevel()));
-        listOfSkills.add(new Skill("Playing the guitar", hero.getSkill().getPlayingTheGuitar().getLevel()));
+        if (hero.getSkill().getPainting().getLevel() != 0)
+            listOfSkills.add(new Skill("Painting", hero.getSkill().getPainting().getLevel()));
+        if (hero.getSkill().getDancing().getLevel() != 0)
+            listOfSkills.add(new Skill("Dancing", hero.getSkill().getDancing().getLevel()));
+        if (hero.getSkill().getWriting().getLevel() != 0)
+            listOfSkills.add(new Skill("Writing", hero.getSkill().getWriting().getLevel()));
+        if (hero.getSkill().getProgramming().getLevel() != 0)
+            listOfSkills.add(new Skill("Programming", hero.getSkill().getProgramming().getLevel()));
+        if (hero.getSkill().getGardening().getLevel() != 0)
+            listOfSkills.add(new Skill("Gardening", hero.getSkill().getGardening().getLevel()));
+        if (hero.getSkill().getLogic().getLevel() != 0)
+            listOfSkills.add(new Skill("Logic", hero.getSkill().getLogic().getLevel()));
+        if (hero.getSkill().getPhotography().getLevel() != 0)
+            listOfSkills.add(new Skill("Photography", hero.getSkill().getPhotography().getLevel()));
+        if (hero.getSkill().getPlayingTheGuitar().getLevel() != 0)
+            listOfSkills.add(new Skill("Playing the guitar", hero.getSkill().getPlayingTheGuitar().getLevel()));
 
         skillsTableView.setItems(listOfSkills);
     }
 
     public void findJob(ActionEvent actionEvent) {
-        SceneCreator.<JobController>newWithFadeOut(
-                game,
-                "/sample/filesFXML/Job.fxml",
+        SceneCreator.<JobController>newWithFadeOut(game, "/sample/filesFXML/Job.fxml",
                 controller -> controller.setHero(hero));
     }
 }
