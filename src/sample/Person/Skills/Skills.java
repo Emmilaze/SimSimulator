@@ -43,7 +43,7 @@ public class Skills {
     }
 
     public Skill getWriting() {
-        return (Skill) writing;
+        return writing;
     }
 
     public void addSkills() {

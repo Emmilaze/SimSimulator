@@ -10,4 +10,16 @@ public class Work {
         this.salary = salary;
         this.workingDays = workingDays;
     }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public String getWorkingDays() {
+        return workingDays;
+    }
 }

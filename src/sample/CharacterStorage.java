@@ -4,7 +4,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
+import sample.Core.Model.Game;
 import sample.Person.Hero;
 import com.google.gson.Gson;
 
@@ -20,10 +22,13 @@ public class CharacterStorage {
 
     public void deleting() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        for (int i = 0; i < Main.heroes.size(); i++)
-            System.out.println(i + Main.heroes.get(i).toString());
+        List<Hero> heroes = Game.getInstance().heroes;
+
+        for (int i = 0; i < heroes.size(); i++)
+            System.out.println(i + heroes.get(i).toString());
+
         int index = Integer.parseInt(reader.readLine());
-        Hero selectedHero = Main.heroes.get(index);
+        Hero selectedHero = heroes.get(index);
         File file = new File("./Characters/" + selectedHero.toString() + ".txt");
 
         reader.close();
@@ -31,8 +36,10 @@ public class CharacterStorage {
     }
 
     public static ArrayList<String> heroesNames() {
-        for (int i = 0; i < Main.heroes.size(); i++)
-            fullName.add(Main.heroes.get(i).toString());
+        List<Hero> heroes = Game.getInstance().heroes;
+
+        for (int i = 0; i < heroes.size(); i++)
+            fullName.add(heroes.get(i).toString());
         return fullName;
     }
 

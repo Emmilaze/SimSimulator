@@ -17,14 +17,10 @@ public class Skill {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public void upLevel() {
         if (getLevel() < 10)
-            setLevel(getLevel()+1);
+            level++;
         else
-            setLevel(10);
+            level = 10;
     }
 }

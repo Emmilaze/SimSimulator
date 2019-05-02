@@ -1,8 +1,8 @@
 package sample.Controllers;
 
+import com.google.gson.GsonBuilder;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -12,17 +12,8 @@ import sample.Person.Hero;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import static sample.Main.GSON;
-
-public class Controller implements Initializable {
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+public class Controller {
 
     public static void makeFadeOut(AnchorPane scene, Parent parent) {
         FadeTransition fadeTransition = new FadeTransition();
@@ -46,7 +37,7 @@ public class Controller implements Initializable {
 
     public static void save(Hero hero){
         try (FileWriter writer = new FileWriter("./Characters/" + hero.toString() + ".txt")) {
-            hero.save(hero, writer, GSON);
+            hero.save(hero, writer, new GsonBuilder().setPrettyPrinting().create());
         } catch (IOException e) {
             e.printStackTrace();
         }

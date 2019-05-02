@@ -1,7 +1,6 @@
 package sample.Person;
 
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class HeroNeeds implements IHeroNeeds {
     public final static int MONEY_START = 2000;
@@ -19,46 +18,12 @@ public class HeroNeeds implements IHeroNeeds {
     public int hygiene;
     public int energy;
 
-    public String hungerStr;
-    public String bladderStr;
-    public String hygieneStr;
-    public String energyStr;
-
     public HeroNeeds(int money, int hunger, int bladder, int hygiene, int energy) {
         this.money = money;
         this.hunger = hunger;
         this.bladder = bladder;
         this.hygiene = hygiene;
         this.energy = energy;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public int getHunger() {
-        return hunger;
-    }
-
-    public int getBladder() {
-        return bladder;
-    }
-
-    public int getHygiene() {
-        return hygiene;
-    }
-
-    public int getEnergy() {
-        return energy;
-    }
-
-    public HashMap show() {
-        HashMap<String, Integer> needs = new HashMap<>();
-        needs.put("Hunger", hunger);
-        needs.put("Bladder", bladder);
-        needs.put("Hygiene", hygiene);
-        needs.put("Energy", energy);
-        return needs;
     }
 
     @Override

@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class Hero {
 
@@ -22,16 +21,18 @@ public class Hero {
     private Calendar calendar;
 
     private Skills skills;
-    private boolean haveJob;
     private boolean married;
 
-    public Hero(String name, String last_name, String age, String sex, Calendar calendar, boolean haveJob) {
+    public Hero(String name, String last_name, String age, String sex, Calendar calendar) {
         this.name = name;
         this.last_name = last_name;
         this.age = age;
         this.sex = sex;
         this.calendar = calendar;
-        this.haveJob = haveJob;
+    }
+
+    public boolean hasJob() {
+        return work != null;
     }
 
     public void newWork(String position, int salary, String workingDays) {
@@ -54,10 +55,6 @@ public class Hero {
     @Override
     public String toString() {
         return (name + " " + last_name);
-    }
-
-    public HashMap showNeeds(){
-        return this.heroNeeds.show();
     }
 
     public IHeroNeeds needs(){
@@ -89,4 +86,7 @@ public class Hero {
         return calendar;
     }
 
+    public Work getWork() {
+        return work;
+    }
 }

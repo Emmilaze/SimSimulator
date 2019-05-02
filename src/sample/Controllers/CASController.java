@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.Core.Common.SceneCreator;
 import sample.Person.Hero;
 
 import java.io.IOException;
@@ -31,24 +32,15 @@ public class CASController implements Initializable {
     ObservableList<String> ageBox = FXCollections.observableArrayList("Young", "Adult", "Old");
     ObservableList<String> bodyBox = FXCollections.observableArrayList("Slim", "Fat", "Muscular", "Fit");
 
-    @FXML
-    private TextField nameField;
-    @FXML
-    private TextField lastNameField;
-    @FXML
-    private ChoiceBox sexChoiceBox;
-    @FXML
-    private ChoiceBox ageChoiceBox;
-    @FXML
-    private JFXColorPicker eyesColor;
-    @FXML
-    private JFXColorPicker hairColor;
-    @FXML
-    private JFXColorPicker skinColor;
-    @FXML
-    private ChoiceBox bodyChoiceBox;
-    @FXML
-    private AnchorPane cas;
+    @FXML private TextField nameField;
+    @FXML private TextField lastNameField;
+    @FXML private ChoiceBox sexChoiceBox;
+    @FXML private ChoiceBox ageChoiceBox;
+    @FXML private JFXColorPicker eyesColor;
+    @FXML private JFXColorPicker hairColor;
+    @FXML private JFXColorPicker skinColor;
+    @FXML private ChoiceBox bodyChoiceBox;
+    @FXML private AnchorPane cas;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,31 +66,23 @@ public class CASController implements Initializable {
 
     public void donebtn(MouseEvent mouseEvent) {
         if (!(nameField.getText().isEmpty()) && !(lastNameField.getText().isEmpty())) {
+
             Calendar calendar = new GregorianCalendar(LocalDateTime.now().getYear(),
                     LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth(),
                     LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+
             Hero hero = new Hero(nameField.getText(), lastNameField.getText(), ageChoiceBox.getValue().toString(),
-                    sexChoiceBox.getValue().toString(), calendar, false);
-            hero.newAppearance(eyesColor.getValue(), hairColor.getValue(),
-                    skinColor.getValue(), bodyChoiceBox.getValue().toString());
-            hero.newHeroNeeds(MONEY_START, HUNGER_START, BLADDER_START,
-                    HYGIENE_START, ENERGY_START);
+                    sexChoiceBox.getValue().toString(), calendar);
+
+            hero.newAppearance(eyesColor.getValue(), hairColor.getValue(), skinColor.getValue(),
+                    bodyChoiceBox.getValue().toString());
+
+            hero.newHeroNeeds(MONEY_START, HUNGER_START, BLADDER_START, HYGIENE_START, ENERGY_START);
+
             hero.newSkills();
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/filesFXML/Game.fxml"));
-
-                    Parent play;
-                    try {
-                        play = loader.load();
-                        makeFadeOut(cas, play);
-
-                        GameController game = loader.getController();
-                        game.setHero(hero);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
+            SceneCreator.<GameController>newWithFadeOut(cas, "/sample/filesFXML/Game.fxml",
+                    controller -> controller.setHero(hero));
         } else {
             Alert alert = new Alert(Alert.AlertType.NONE);
             DialogPane dialogPane = alert.getDialogPane();
@@ -122,7 +106,6 @@ public class CASController implements Initializable {
             }
         }
     }
-
 
     public void cancelbtn(MouseEvent mouseEvent) {
         Parent mainMenu;
